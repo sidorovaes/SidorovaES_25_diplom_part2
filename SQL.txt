@@ -1,0 +1,8 @@
+Cписок логинов курьеров с количеством их заказов в статусе «В доставке»
+
+Select c.login, count(*) from "Couriers" as c join "Orders" as o on c.id=o."courierId" where o."inDelivery" = true group by c.login;
+
+
+Все трекеры заказов и их статусы
+
+Select track, CASE when finished = true then '2' when "Orders".cancelled = true then '-1' when "inDelivery" = true then '1' else '0' end from "Orders";
